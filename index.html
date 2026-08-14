@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="assets/img_10.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="assets/img_10.jpg">
+  <title>Happy 2nd Engagement Anniversary | Netflix ❤️</title>
+
+  <!-- Meta tags for premium SEO and sharing feel -->
+  <meta name="description"
+    content="Celebrating 2 wonderful years of love, memories, laughter, and endless smiles. Welcome to our Netflix anniversary timeline.">
+  <meta name="theme-color" content="#141414">
+  
+  <!-- Security headers -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ================= NETFLIX LOADING SPINNER ================= -->
+  <div id="netflix-loader" class="loader-overlay">
+    <div class="netflix-spinner"></div>
+  </div>
+
+  <!-- ================= PROFILE SELECTION SCREEN ================= -->
+  <div id="profile-screen" class="app-screen">
+    <div class="profile-container">
+      <header class="profile-header">
+        <h1>Who's watching?</h1>
+        <p>Choose a chapter from our love story to start viewing</p>
+      </header>
+
+      <!-- Populated dynamically via app.js -->
+      <div class="profile-grid" id="profile-grid"></div>
+
+      <button class="profile-manage-btn" id="manage-profiles-btn">Manage Profiles</button>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HOME DASHBOARD ================= -->
+  <div id="main-dashboard" class="app-screen">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar" id="navbar">
+      <div class="navbar-left">
+        <a href="#" class="logo" id="nav-logo" title="Netflix Home">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
+            class="netflix-logo-img">
+        </a>
+        <ul class="nav-links">
+          <li class="nav-item active" data-target="hero-banner">Home</li>
+          <li class="nav-item" data-target="most-loved-row">Memories</li>
+          <li class="nav-item" data-target="video-section">Featured Video</li>
+          <li class="nav-item" data-target="counter-section">Anniversary Counter</li>
+        </ul>
+      </div>
+      <div class="navbar-right">
+        <i data-lucide="search" class="nav-icon"></i>
+        <i data-lucide="bell" class="nav-icon"></i>
+        <div class="nav-profile-active" id="nav-profile-active" title="Switch Profile">
+          <img src="" alt="Active Profile" class="nav-avatar" id="nav-avatar-img">
+          <span class="nav-profile-name" id="nav-profile-text"></span>
+          <i data-lucide="chevron-down" class="nav-icon" style="font-size: 0.8rem; margin-left: 2px;"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO FEATURED BILLBOARD BANNER -->
+    <header class="hero-banner" id="hero-banner">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i data-lucide="heart" style="fill: var(--accent-color); width: 16px; height: 16px; border: none;"></i>
+          <span id="hero-subtitle"></span>
+        </div>
+        <h1 class="hero-title" id="hero-title"></h1>
+        <div class="hero-meta">
+          <span class="hero-match" id="hero-match"></span>
+          <span class="hero-release-year" id="hero-year"></span>
+          <span class="hero-badge hero-badge-red" id="hero-rating"></span>
+          <span class="hero-seasons" id="hero-seasons"></span>
+          <span class="hero-quality">Ultra 4K</span>
+          <span class="hero-quality">HDR</span>
+        </div>
+        <p class="hero-description" id="hero-desc"></p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" id="hero-play-btn">
+            <i data-lucide="play" style="fill: #000; width: 20px; height: 20px;"></i> Play
+          </button>
+          <button class="btn btn-secondary" id="hero-info-btn">
+            <i data-lucide="info" style="width: 20px; height: 20px;"></i> More Info
+          </button>
+        </div>
+      </div>
+      <!-- Floating maturity badge on billboard -->
+      <div class="billboard-maturity-badge" id="billboard-maturity">2 Years</div>
+    </header>
+
+    <!-- CONTENT ROWS CONTAINER -->
+    <main class="content-rows-container" id="rows-container">
+      <!-- Populated dynamically via app.js -->
+    </main>
+
+    <!-- FEATURED VIDEO SECTION (CUSTOM VIDEO PLAYER) -->
+    <section class="video-section-container" id="video-section">
+      <h2 class="video-section-header">Our Love Story – Director's Cut</h2>
+
+      <div class="video-layout">
+        <!-- CUSTOM STREAMING CONTROLS VIDEO PLAYER -->
+        <div class="video-player-wrapper paused" id="video-player-wrapper">
+
+          <!-- Fallback Image Overlay (Thumbnail with big Play button) -->
+          <div class="video-poster-overlay" id="video-poster-overlay">
+            <button class="big-play-btn" id="big-play-btn" aria-label="Play Video">
+              <i data-lucide="play" style="fill: #fff; width: 30px; height: 30px;"></i>
+            </button>
+          </div>
+
+          <!-- Video Element -->
+          <video class="custom-video" id="main-love-video">
+            <source src="assets/vid_01.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+
+          <div class="center-control-zone" id="center-control-zone">
+            <button class="center-play-pause-btn" id="center-play-pause-btn" type="button" title="Play (Space)" aria-label="Play video">
+              <i data-lucide="play"></i>
+            </button>
+          </div>
+
+          <!-- Netflix-style Controls Bar -->
+          <div class="video-controls-overlay" id="video-controls-overlay">
+
+            <!-- Top gradient title area (visible on pause) -->
+            <div class="player-top-bar">
+              <span class="player-title-text" id="player-title-text">Our Love Story</span>
+              <div class="player-top-right">
+                <button class="player-btn reaction-btn" id="thumbs-up-btn" title="I like this">
+                  <i data-lucide="thumbs-up"></i>
+                </button>
+                <button class="player-btn reaction-btn" id="thumbs-down-btn" title="Not for me">
+                  <i data-lucide="thumbs-down"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Spacer -->
+            <div class="player-spacer"></div>
+
+            <!-- Progress / Scrub Bar -->
+            <div class="player-progress-container" id="player-progress-container">
+              <div class="player-progress-buffered" id="player-progress-buffered"></div>
+              <div class="player-progress-bar" id="player-progress-bar">
+                <div class="player-progress-handle"></div>
+              </div>
+              <!-- Hover time tooltip -->
+              <div class="player-progress-tooltip" id="player-progress-tooltip">0:00</div>
+            </div>
+
+            <!-- Bottom Controls Row -->
+            <div class="player-controls-bottom">
+
+              <!-- LEFT group -->
+              <div class="controls-left">
+                <!-- Play / Pause -->
+                <button class="player-btn" id="play-pause-btn" type="button" title="Play (Space)" aria-label="Play video">
+                  <i data-lucide="play"></i>
+                </button>
+                <!-- Skip Back 10s -->
+                <button class="player-btn skip-btn" id="skip-back-btn" title="Rewind 10s">
+                  <i data-lucide="rotate-ccw"></i>
+                  <span class="skip-label">10</span>
+                </button>
+                <!-- Skip Forward 10s -->
+                <button class="player-btn skip-btn" id="skip-forward-btn" title="Forward 10s">
+                  <i data-lucide="rotate-cw"></i>
+                  <span class="skip-label">10</span>
+                </button>
+                <!-- Volume -->
+                <div class="volume-container" id="volume-container">
+                  <button class="player-btn" id="volume-btn" title="Mute (M)">
+                    <i data-lucide="volume-2"></i>
+                  </button>
+                  <div class="volume-slider-track">
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.05" value="1">
+                  </div>
+                </div>
+                <!-- Time display -->
+                <span class="video-time" id="video-time-display">0:00 / 0:00</span>
+              </div>
+
+              <!-- RIGHT group -->
+              <div class="controls-right">
+                <!-- Speed -->
+                <button class="player-btn speed-btn" id="speed-btn" title="Playback Speed">
+                  <span class="speed-label" id="speed-label">1x</span>
+                </button>
+                <!-- Brightness -->
+                <div class="icon-slider-group" id="brightness-group">
+                  <button class="player-btn brightness-btn" id="brightness-btn" title="Brightness">
+                    <i data-lucide="sun"></i>
+                  </button>
+                  <div class="mini-slider-track">
+                    <input type="range" class="mini-slider" id="brightness-slider" min="0.3" max="1.5" step="0.1" value="1">
+                  </div>
+                </div>
+                <!-- Contrast -->
+                <div class="icon-slider-group" id="contrast-group">
+                  <button class="player-btn contrast-btn" id="contrast-btn" title="Contrast">
+                    <i data-lucide="contrast"></i>
+                  </button>
+                  <div class="mini-slider-track">
+                    <input type="range" class="mini-slider" id="contrast-slider" min="0.5" max="1.5" step="0.1" value="1">
+                  </div>
+                </div>
+                <!-- Audio & Subtitles -->
+                <button class="player-btn" id="audio-subtitles-btn" title="Audio & Subtitles">
+                  <i data-lucide="subtitles"></i>
+                </button>
+                <!-- Lock -->
+                <button class="player-btn" id="lock-btn" title="Lock controls">
+                  <i data-lucide="lock"></i>
+                </button>
+                <!-- Fullscreen -->
+                <button class="player-btn" id="fullscreen-btn" type="button" title="Maximize (F)" aria-label="Maximize video">
+                  <i data-lucide="maximize"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- VIDEO DETAILS/INFO CARD -->
+        <div class="video-info-panel">
+          <span class="video-tagline">Netflix Original</span>
+          <h3 class="video-title">The Director's Cut</h3>
+          <p class="video-desc" id="video-desc-text">
+            A collection of our favorite memories, laughter, adventures, and unforgettable moments. Watch the highlights
+            of our journey compiled into an emotional masterpiece.
+          </p>
+          <ul class="video-details-list">
+            <li>
+              <span class="detail-label">Starring</span>
+              <span class="detail-val" id="starring-names">You & Me</span>
+            </li>
+            <li>
+              <span class="detail-label">Genres</span>
+              <span class="detail-val">Romantic Drama, Feel-good Comedy</span>
+            </li>
+            <li>
+              <span class="detail-label">Directed by</span>
+              <span class="detail-val">Universe</span>
+            </li>
+            <li>
+              <span class="detail-label">Audio</span>
+              <span class="detail-val">Dolby Atmos 5.1 Stereo</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE ANNIVERSARY COUNTER -->
+    <section class="counter-section" id="counter-section">
+      <h2 class="counter-subtitle">
+        <i data-lucide="heart" style="fill: var(--accent-color); width: 28px; height: 28px;"></i>
+        Celebrating 2 Wonderful Years of Engagement
+      </h2>
+
+      <div class="counter-grid">
+        <!-- Years Card -->
+        <div class="counter-card">
+          <div class="counter-val" id="count-years">0</div>
+          <div class="counter-label">Years</div>
+        </div>
+        <!-- Months Card -->
+        <div class="counter-card">
+          <div class="counter-val" id="count-months">0</div>
+          <div class="counter-label">Months</div>
+        </div>
+        <!-- Days Card -->
+        <div class="counter-card">
+          <div class="counter-val" id="count-days">0</div>
+          <div class="counter-label">Days</div>
+        </div>
+        <!-- Hours Card -->
+        <div class="counter-card">
+          <div class="counter-val" id="count-hours">00</div>
+          <div class="counter-label">Hours</div>
+        </div>
+        <!-- Minutes Card -->
+        <div class="counter-card">
+          <div class="counter-val" id="count-minutes">00</div>
+          <div class="counter-label">Minutes</div>
+        </div>
+        <!-- Seconds Card -->
+        <div class="counter-card">
+          <div class="counter-val" id="count-seconds">00</div>
+          <div class="counter-label">Seconds</div>
+        </div>
+      </div>
+
+      <p class="counter-msg">
+        Two years ago, we promised each other a lifetime of adventures. Every day since has been a reminder of how lucky
+        we are. Here's to us, our story, and the endless chapters still waiting to be written. ❤️
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <ul class="footer-links">
+          <li class="footer-link">Terms of Use</li>
+          <li class="footer-link">Privacy Policy</li>
+          <li class="footer-link">Cookie Preferences</li>
+          <li class="footer-link">Anniversary Support</li>
+          <li class="footer-link">Audio Description</li>
+          <li class="footer-link">Gift Cards</li>
+          <li class="footer-link">Media Center</li>
+          <li class="footer-link">Corporate Information</li>
+        </ul>
+        <div class="footer-signature" id="footer-sig"></div>
+        <div class="copyright">© 2026 Netflix Production. All rights reserved. Created with love.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Lucide Icons CDN (renders crisp vectors) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Load config data first, then main logic -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
